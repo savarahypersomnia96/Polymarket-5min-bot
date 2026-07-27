@@ -38,7 +38,7 @@ YES 卖一价 + NO 卖一价 < 1  →  存在套利空间
 
 如果你不会编译代码，请直接使用 **[Releases](../../releases/latest)** 中提供的预编译可执行文件：
 
-1. 从 Releases 下载对应系统/架构的安装包（Linux 请选 `*-linux-musl`，兼容较旧发行版）
+1. 从 Releases 下载对应系统/架构的安装包
 2. 复制 `.env.example` 为 `.env`，并填写必填项
 3. 运行：
   - Linux / macOS：`./polypulse`

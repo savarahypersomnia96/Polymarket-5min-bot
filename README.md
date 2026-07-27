@@ -36,7 +36,7 @@ The bot roughly follows these steps:
 
 If you don't want to compile from source, use the pre-built executable from **[Releases](../../releases/latest)**:
 
-1. Download the package for your OS/arch from Releases (Linux builds use `*-linux-musl` for broad compatibility on older distros)
+1. Download the package for your OS/arch from Releases 
 2. Copy `.env.example` to `.env` and fill in required fields
 3. Run:
    - Linux / macOS: `./polypulse`
