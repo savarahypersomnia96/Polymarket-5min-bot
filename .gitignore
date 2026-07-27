@@ -1,0 +1,6 @@
+/target
+.env
+bot.log
+.idea
+_vendor
+Cargo.lock
